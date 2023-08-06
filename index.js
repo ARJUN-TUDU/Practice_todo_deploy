@@ -43,13 +43,19 @@ const Todos = mongoose.model("todo_list",todoSchema)
 app.get("/todos",async(req,res)=>{
     
     try{
-        const data = await Todos.find();
+    const data = await Todos.find();
     console.log(data);
     res.json(data);
     }catch(e){
         console.log(e)
     }
 
+})
+
+app.get("/",async(req,res)=>{
+
+
+    res.send({name:"bokcahoda"})
 })
 
 app.post(`/todoset`,async(req,res)=>{
