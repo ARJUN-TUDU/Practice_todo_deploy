@@ -43,6 +43,7 @@ const Todos = mongoose.model("todo_list",todoSchema)
 app.get("/todos",async(req,res)=>{
     
     const data = await Todos.find();
+    console.log(data);
     res.json(data);
 
 })
