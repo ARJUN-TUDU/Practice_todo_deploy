@@ -47,7 +47,7 @@ app.get("/todos",async(req,res)=>{
 
 })
 
-app.post(`${BASE_URL}/todoset`,async(req,res)=>{
+app.post(`/todoset`,async(req,res)=>{
     
     const obj = new Todos({
         id : req.body.id,
