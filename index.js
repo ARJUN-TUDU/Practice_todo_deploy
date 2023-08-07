@@ -11,16 +11,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-try{
-
-    mongoose.connect(DATABASE);
-
-}catch(e){
-
-    console.log("database connection error");
-
-}
+mongoose.connect(DATABASE).then(()=>{
+    
+    app.listen(PORT,()=>{
+        console.log("app is running",PORT);
+    })
+}).catch(err=>{
+    console.log(err);
+})
 
 
 const todoSchema = mongoose.Schema({
@@ -56,7 +54,7 @@ app.post(`/todoset`,async(req,res)=>{
         title:req.body.title
     })
 
-     obj.save();
+     await obj.save();
 
 });
 
@@ -64,13 +62,4 @@ app.post(`/todoset`,async(req,res)=>{
 app.post('/')
 
 
-app.listen(PORT,(err)=>{
-    
-    if(err){
-        console.log("error app start")
-    }else{
-        console.log("app started successfully")
-    }
-
-});
 
