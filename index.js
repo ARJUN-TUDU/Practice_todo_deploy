@@ -7,7 +7,6 @@ const PORT = process.env.PORT || 5000
 
 const DATABASE = process.env.DATABASE
 
-
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -24,39 +23,37 @@ try{
 }
 
 
-
 const todoSchema = mongoose.Schema({
 
     id : Number , 
     title : String
 
-})
+});
 
 
 const Todos = mongoose.model("todo_list",todoSchema)
 
 
-
-
-
-
 app.get("/todos",async(req,res)=>{
     
-    try{
+    try
+    {
     const data = await Todos.find();
     console.log(data);
     res.json(data);
     }catch(e){
-        console.log(e)
+
+    console.log(e)
+
     }
 
-})
+});
 
 app.get("/",async(req,res)=>{
 
+    res.send({name:"bokachoda"});
 
-    res.send({name:"bokcahoda"})
-})
+});
 
 app.post(`/todoset`,async(req,res)=>{
     
@@ -66,11 +63,11 @@ app.post(`/todoset`,async(req,res)=>{
     })
 
      obj.save();
-    
+
+});
 
 
-})
-
+app.post('/')
 
 
 app.listen(PORT,(err)=>{
@@ -80,5 +77,6 @@ app.listen(PORT,(err)=>{
     }else{
         console.log("app started successfully")
     }
+
 });
 
