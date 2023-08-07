@@ -36,16 +36,10 @@ const Todos = mongoose.model("todo_list",todoSchema)
 
 app.get("/todos",async(req,res)=>{
     
-    try
-    {
+    
     const data = await Todos.find();
-    console.log(data);
     res.json(data);
-    }catch(e){
-
-    console.log(e)
-
-    }
+   
 
 });
 
